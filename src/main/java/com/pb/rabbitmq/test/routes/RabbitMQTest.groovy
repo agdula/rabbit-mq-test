@@ -6,22 +6,6 @@ import static org.apache.camel.component.rabbitmq.RabbitMQConstants.*
 import org.apache.camel.component.rabbitmq.RabbitMQEndpoint
 import org.springframework.stereotype.Component
 
-/** **************************************************************************/
-/*                                                                          */
-/*  NOTICE                                                                  */
-/*                                                                          */
-/* Confidential, unpublished property of Pitney Bowes, Inc.                 */
-/* Use and distribution limited solely to authorized personnel.             */
-/*                                                                          */
-/* The use, disclosure, reproduction, modification, transfer, or            */
-/* transmittal of this work for any purpose in any form or by               */
-/* any means without the written permission of Pitney Bowes                 */
-/* is strictly prohibited.                                                  */
-/*                                                                          */
-/* Copyright 2014 Pitney Bowes, Inc.                                     */
-/* All Rights Reserved.                                                     */
-/*                                                                          */
-/** **************************************************************************/
 /**
  * @author: Andrzej Gdula
  * @created: 11/05/2014 09:01 
