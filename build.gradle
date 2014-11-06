@@ -1,0 +1,75 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'groovy'
+
+apply plugin: 'war'
+
+group = 'rabbit-mq-test'
+version = '1.0-SNAPSHOT'
+
+//configurations.compile.transitive = true
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+ 		maven { url "https://repository.apache.org/content/repositories/snapshots" }
+ 		maven { url "https://repository.apache.org/content/repositories/releases" }
+ 		maven { url "http://central.maven.org/maven2" }
+ 		maven { url "http://repo.spring.io/milestone" }
+ 		maven { url "http://repo.spring.io/snapshot" }
+ 		maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+ 		maven { url "https://oss.sonatype.org/content/repositories/releases" }
+ 		maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+ 		maven { url "http://smolo.pl.pb.com/repo/releases/" }
+ 		maven { url "https://repo.maven.apache.org/maven2" }
+}
+dependencies {
+//	compile("com.mangofactory:swagger-springmvc:0.8.8") {
+//		exclude(module: 'jackson-module-scala_2.10')
+//		exclude(module: 'scalap')
+//		exclude(module: 'spring-web')
+//		exclude(module: 'spring-webmvc')
+//		exclude(module: 'scala-compiler')
+//		}
+	compile "org.apache.camel:camel-netty:2.15-SNAPSHOT"
+	compile "org.apache.camel:camel-groovy:2.15-SNAPSHOT"
+	compile "org.springframework.boot:spring-boot-starter-jdbc:1.1.5.RELEASE"
+	compile "org.springframework.boot:spring-boot-starter-data-jpa:1.1.5.RELEASE"
+	compile "com.oracle:ojdbc6:11.2.0.3"
+	compile("org.liquibase:liquibase-core:3.1.1") {
+		exclude(module: 'jetty-servlet')
+		}
+	compile("org.liquibase.ext:liquibase-hibernate4:3.3") {
+		exclude(module: 'hibernate-jpa-2.0-api')
+		}
+	compile "commons-io:commons-io:2.1"
+	compile "org.apache.commons:commons-lang3:3.3.2"
+	compile "com.google.guava:guava:18.0"
+	compile "org.javolution:javolution:5.3.1"
+	compile "org.springframework.boot:spring-boot-starter-web:1.1.8.RELEASE"
+	compile "org.springframework.boot:spring-boot-starter-jetty:1.1.8.RELEASE"
+	compile "org.springframework.boot:spring-boot-starter-actuator:1.1.8.RELEASE"
+	compile "org.apache.camel:camel-spring-boot:2.15-SNAPSHOT"
+	compile "org.codehaus.groovy:groovy-all:2.0.0"
+	compile "org.jolokia:jolokia-core:1.2.2"
+
+    testCompile "org.hsqldb:hsqldb:2.3.2"
+	testCompile "com.jayway.awaitility:awaitility-groovy:1.6.1"
+	testCompile("org.springframework.boot:spring-boot-starter-test:1.1.8.RELEASE") {
+		exclude(module: 'commons-logging')
+		}
+}
+
+// the remaining configuration is specific to this project, and is not required for using Spock
+
+apply from: "gradle/ide.gradle"
+
+task collectJars(type: Copy) {
+    into "$buildDir/output/lib"
+    from configurations.testRuntime
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.1"
+}
